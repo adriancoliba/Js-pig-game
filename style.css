@@ -152,3 +152,33 @@ i {
 
 .winner { background-color: #f7f7f7; }
 .winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+#rules {
+    position: relative;
+    margin: 0 auto;
+}
+#gameRules{
+    margin-top: 10px;
+    border: 1px solid rgba(201, 201, 201, 0.137);
+    border-radius: 20%;
+    background-color: rgba(255, 255, 255, 0.356);
+    color: rgba(0, 0, 0, 0.562);
+    transition: margin-top 0.5s, color 1s;
+    -webkit-transition: margin-top 0.5s, color 1s;
+}
+#gameRules:hover{
+    font-size: 1.3em;;
+}
+#divRules{
+    text-align: center;
+}
+.divRulesParagraphs{
+    text-align: center;
+    font-size: 0.7em;
+    color: aliceblue;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}
+#divRulesParagraphs1{
+    padding-top: 35px
+}
