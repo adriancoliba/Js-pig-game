@@ -14,10 +14,9 @@ function showRules () {
     }
 }
 // END RULES BUTTON
+let scores, roundScore, activePlayer
+init();
 
-let scores = [0, 0];
-let roundScore = 0;
-let activePlayer = 0;
 let dice = Math.floor(Math.random() * 6) + 1
 document.querySelector(".dice").style.display ="none"
 
@@ -54,20 +53,26 @@ function hold () {
     document.querySelector("#score-" + activePlayer).innerHTML = scores[activePlayer];
     roundScore = 0;
     document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
-    if(scores[activePlayer] >=20) {
-        document.querySelector("#name-" + activePlayer).innerHTML = "<h3>WINNER!</h1>"
+    if(scores[activePlayer] >=25) {
+        document.querySelector("#name-" + activePlayer).innerHTML = "<h3>WINNER!</h1>";
+        document.querySelector(".dice").style.display = "none";
+        document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner")
+        document.querySelector(".player-1-panel").classList.remove("active")
+        document.querySelector(".player-0-panel").classList.remove("active")
+
     }
     activeDot();
 }
 
 function newGame (){
-    scores = [0,0];
-    roundScore = 0;
-    activePlayer = 0;
+    document.querySelector(".player-" + activePlayer + "-panel").classList.remove("winner");
+    init();
     document.querySelector(".dice").style.display ="none";
     document.querySelector("#name-0").innerHTML = "Player 1";
     document.querySelector("#name-1").innerHTML = "Player 2";
     document.querySelector(".player-score").innerHTML = 0;
+    document.querySelector(".player-1-panel").classList.remove("winner")
+    document.querySelector(".player-0-panel").classList.remove("winner")
     
 }
 
@@ -76,3 +81,8 @@ document.querySelector(".btn-roll").onclick = generateNumber;
 document.querySelector(".btn-hold").onclick = hold;
 document.querySelector(".btn-new").onclick = newGame;
 
+function init(){
+    scores = [0,0];
+    activePlayer = 0;
+    roundScore = 0;
+}
