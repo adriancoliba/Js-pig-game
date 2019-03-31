@@ -1,4 +1,4 @@
-# Roll-dice game built using DOM Manipulation and Events ( with JavaScript )
+# Roll-dice game built using DOM Manipulation and Events with JavaScript ///
 ----
 
 
