@@ -14,6 +14,7 @@ function showRules () {
     }
 }
 // END RULES BUTTON
+let gamePlaying = true;
 let scores, roundScore, activePlayer
 init();
 
@@ -33,18 +34,20 @@ function activeDot(){
 }
 
 function generateNumber () {
-    var number= Math.floor(Math.random() * 6) + 1;
-    if(number !== 1) {
-        document.querySelector(".dice").style.display ="block"
-        document.querySelector(".dice").src = "dice-" + number + ".png";
-        roundScore += number;
-        document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
-    } else if (number == 1){
-        document.querySelector(".dice").style.display = "none";
-        roundScore = 0;
-        document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
-        
-        activeDot();
+    if(gamePlaying){
+        var number= Math.floor(Math.random() * 6) + 1;
+        if(number !== 1) {
+            document.querySelector(".dice").style.display ="block"
+            document.querySelector(".dice").src = "dice-" + number + ".png";
+            roundScore += number;
+            document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
+        } else if (number == 1){
+            document.querySelector(".dice").style.display = "none";
+            roundScore = 0;
+            document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
+            
+            activeDot();
+        }
     }
 }
 
@@ -54,6 +57,7 @@ function hold () {
     roundScore = 0;
     document.querySelector("#current-" + activePlayer).innerHTML = roundScore;
     if(scores[activePlayer] >=25) {
+        gamePlaying = false;
         document.querySelector("#name-" + activePlayer).innerHTML = "<h3>WINNER!</h1>";
         document.querySelector(".dice").style.display = "none";
         document.querySelector(".player-" + activePlayer + "-panel").classList.add("winner")
@@ -65,17 +69,17 @@ function hold () {
 }
 
 function newGame (){
+    gamePlaying = true;
     document.querySelector(".player-" + activePlayer + "-panel").classList.remove("winner");
     init();
     document.querySelector(".dice").style.display ="none";
     document.querySelector("#name-0").innerHTML = "Player 1";
     document.querySelector("#name-1").innerHTML = "Player 2";
-    document.querySelector(".player-score").innerHTML = 0;
+    document.querySelector("#score-1").innerHTML = 0;
+    document.querySelector("#score-0").innerHTML = 0;
     document.querySelector(".player-1-panel").classList.remove("winner")
     document.querySelector(".player-0-panel").classList.remove("winner")
-    
 }
-
 
 document.querySelector(".btn-roll").onclick = generateNumber;
 document.querySelector(".btn-hold").onclick = hold;
